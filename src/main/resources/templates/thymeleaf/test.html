@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>Thymeleaf标签使用</title>
+    
+    <!-- 进入页面时访问（存在异常，待解决） -->
+ 	<!-- <script th:src="@{/static/js/test.js}"></script> -->
+    
+</head>
+<body>
+<h1>Thymeleaf模板引擎的标签使用</h1>
+<div>
+	用户姓名：<input th:id="${user.name}" th:name="${user.name}" th:value="${user.name}"/>
+	<br/>
+	用户年龄：<input th:value="${user.age}"/>
+	<br/>
+	用户生日：<input th:value="${user.birthday}"/>
+	<br/>
+	用户生日：<input th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}"/><!-- Thymeleaf日期转换 -->
+	<br/>
+</div>
+
+<br/>
+<h3>更优雅的方式展示以上内容  * </h3>
+<div th:object="${user}"><!-- 传入user对象 -->
+	用户姓名：<input th:id="*{name}" th:name="*{name}" th:value="*{name}"/>
+	<br/>
+	用户年龄：<input th:value="*{age}"/>
+	<br/>
+	用户生日：<input th:value="*{#dates.format(birthday, 'yyyy-MM-dd hh:mm:ss')}"/>
+	<br/>
+</div>
+
+<br/>
+
+<br/>
+<h3>text 与 utext ：</h3>
+<span th:text="${user.desc}">原封不动</span>
+<br/>
+<span th:utext="${user.desc}">abc</span>
+<br/>
+<br/>
+
+URL:<br/>
+<a href="" th:href="@{http://www.imooc.com}">网站地址</a>
+<br/>
+
+<br/>
+<form th:action="@{/th/postform}" th:object="${user}" method="post" th:method="post">
+	<h3>th:field="*{name}"相当于====>>>th:id="*{name}" th:name="*{name}" th:value="*{name}"</h3><br/>
+       用户名：<input type="text" th:field="*{name}"/>与下面对比推荐使用此写法<br/>
+       效果同上：<input th:id="*{name}" th:name="*{name}" th:value="*{name}"/><br/>
+</form>
+<br/>
+
+<form th:action="@{/th/postform}" th:object="${user}" method="post" th:method="post">
+	<h3>可输入姓名、年龄提交</h3>
+    <input type="text" th:field="*{name}"/><br/>
+    <input type="text" th:field="*{age}"/><br/>
+    <input type="submit"/>
+</form>
+<br/>
+
+<br/>
+<h3> 判断    ----   th:if与th:unless相反</h3>
+<div th:if="${user.age} == 18">==:十八岁的天空</div>
+<div th:if="${user.age} gt 18">你老了（gt:大于）</div>
+<div th:if="${user.age} lt 18">你很年轻（lt:小于）</div>
+<div th:if="${user.age} ge 18">ge:大于等于</div>
+<div th:if="${user.age} le 18">le:小于等于</div>
+<br/>
+
+<br/>
+<div th:unless="${user.age} == 18">==:十八岁的天空</div>
+<div th:unless="${user.age} gt 18">你老了</div>
+<div th:unless="${user.age} lt 18">你很年轻</div>
+<div th:unless="${user.age} ge 18">ge</div>
+<div th:unless="${user.age} le 18">le</div>
+<br/>
+
+<br/>
+<h3>user.name的值等于某个条件就显示某个值</h3>
+<div th:object="${user}"><input type="text" th:field="*{name}"/></div>
+<select>
+     <option>选择框</option>
+     <option th:selected="${user.name eq 'lee'}">lee</option>
+     <option th:selected="${user.name eq '皓码'}">皓码</option>
+     <option th:selected="${user.name eq 'LeeCX'}">LeeCX</option>
+     <option th:selected="${user.name eq 'superadmin'}">superadmin</option>
+     <option th:selected="${user.name eq 'manager'}">manager</option>
+</select>
+<br/>
+
+<br/>
+<h3> th:each循环</h3>
+<table>
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>年龄备注</th>
+        <th>生日</th>
+    </tr>
+    <tr th:each="person:${userList}">
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.age}"></td>
+        <td th:text="${person.age gt 18} ? 你老了 : 你很年轻">18岁</td>
+        <td th:text="${#dates.format(user.birthday, 'yyyy-MM-dd hh:mm:ss')}"></td>
+    </tr>
+</table>
+<br/>
+
+<br/>
+<h3> th:switch循环 </h3>
+在application.properties配置i18n/messages（messages.properties）
+<div th:switch="${user.name}"><!-- 判断用户名，等于下面某项就显示某项 -->
+  <p th:case="'lee'">lee</p>
+  <!-- 获取资源文件数据 -->
+  <p th:case="#{roles.manager}">普通管理员</p>
+  <p th:case="#{roles.superadmin}">超级管理员</p>
+  <p th:case="*">其他用户</p>
+</div>
+<br/>
+
+</body>
+</html>
