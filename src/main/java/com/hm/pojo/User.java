@@ -18,7 +18,6 @@ public class User {
 	
 	//                  按照此格式返回                      中国               时区
 	@JsonFormat(pattern="yyyy-MM-dd hh:mm:ss a", locale="zh", timezone="GMT+8")  
-	
 	private Date birthday;
 	
 	@JsonInclude(Include.NON_NULL) //为空不显示给前端

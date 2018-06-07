@@ -13,7 +13,7 @@ import com.hm.pojo.User;
 public class UserController {
 
 	@RequestMapping("/getUser")
-	public User uesr() {
+	public User getUser() {
 		
 		User u = new User();
 		u.setName("hm");
@@ -24,6 +24,10 @@ public class UserController {
 		return u;
 	}
 	
+	/**
+	 * 封装对象返回
+	 * @return
+	 */
 	@RequestMapping("/getUserJson")
 	public JSONResult getUserJson() {
 		

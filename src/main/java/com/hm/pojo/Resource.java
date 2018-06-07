@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration //代表这段会应用资源文件
-@ConfigurationProperties(prefix="com.hm.opensource")//前缀，会映射到字段里 
+@ConfigurationProperties(prefix="com.hm.opensource")//前缀，会映射到字段里   com.hm.opensource.name
 @PropertySource(value="classpath:resource.properties") //资源文件地址
 public class Resource {
 	private String name;

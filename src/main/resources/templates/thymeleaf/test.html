@@ -6,6 +6,7 @@
     
     <!-- 进入页面时访问（存在异常，待解决） -->
  	<!-- <script th:src="@{/static/js/test.js}"></script> -->
+ 	<script th:src="@{/static/js/test.js}"></script>
     
 </head>
 <body>
@@ -42,20 +43,22 @@
 <br/>
 <br/>
 
-URL:<br/>
+<br/>
+<h3>URL:</h3>
 <a href="" th:href="@{http://www.imooc.com}">网站地址</a>
 <br/>
 
 <br/>
+<h3>th:field="*{name}"相当于====>>>th:id="*{name}" th:name="*{name}" th:value="*{name}"</h3>
 <form th:action="@{/th/postform}" th:object="${user}" method="post" th:method="post">
-	<h3>th:field="*{name}"相当于====>>>th:id="*{name}" th:name="*{name}" th:value="*{name}"</h3><br/>
        用户名：<input type="text" th:field="*{name}"/>与下面对比推荐使用此写法<br/>
        效果同上：<input th:id="*{name}" th:name="*{name}" th:value="*{name}"/><br/>
 </form>
 <br/>
 
+<br/>
+<h3>可输入姓名、年龄提交</h3>
 <form th:action="@{/th/postform}" th:object="${user}" method="post" th:method="post">
-	<h3>可输入姓名、年龄提交</h3>
     <input type="text" th:field="*{name}"/><br/>
     <input type="text" th:field="*{age}"/><br/>
     <input type="submit"/>
