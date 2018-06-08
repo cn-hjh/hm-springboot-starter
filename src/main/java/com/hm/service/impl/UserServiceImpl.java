@@ -69,6 +69,7 @@ public class UserServiceImpl implements UserService {
 	public List<SysUser> queryUserList(SysUser user) {
 		
 		try {
+			//休眠11秒
 			Thread.sleep(11000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();

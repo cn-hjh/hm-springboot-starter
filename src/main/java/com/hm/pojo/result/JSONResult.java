@@ -1,4 +1,4 @@
-package com.hm.pojo;
+package com.hm.pojo.result;
 
 import java.util.List;
 

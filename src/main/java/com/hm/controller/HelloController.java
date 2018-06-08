@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hm.pojo.JSONResult;
 import com.hm.pojo.Resource;
+import com.hm.pojo.result.JSONResult;
 
 @RestController
 public class HelloController {

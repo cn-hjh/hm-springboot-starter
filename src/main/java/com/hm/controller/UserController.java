@@ -5,8 +5,8 @@ import java.util.Date;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hm.pojo.JSONResult;
 import com.hm.pojo.User;
+import com.hm.pojo.result.JSONResult;
 
 @RestController    //@RestController = @Controller + @ResponseBody
 @RequestMapping("/user")

@@ -14,6 +14,11 @@ import com.hm.pojo.IMoocJSONResult;
 import com.hm.pojo.SysUser;
 import com.hm.service.UserService;
 
+/**
+ * Spring Boot 集成 MyBatis, 分页插件 PageHelper, 通用 Mapper
+ * @author 004
+ *
+ */
 @RestController
 @RequestMapping("mybatis")
 public class MyBatisCRUDController {

@@ -3,14 +3,16 @@
 <head lang="en">
     <meta charset="UTF-8" />
     <title>Thymeleaf标签使用</title>
+    <h1>Thymeleaf模板引擎的标签使用</h1><br/>
     
-    <!-- 进入页面时访问（存在异常，待解决） -->
+    <h3>引入外部资源文件 </h3><br/>
  	<!-- <script th:src="@{/static/js/test.js}"></script> -->
- 	<script th:src="@{/static/js/test.js}"></script>
     
 </head>
 <body>
-<h1>Thymeleaf模板引擎的标签使用</h1>
+
+
+<h3>基本使用方式 </h3>
 <div>
 	用户姓名：<input th:id="${user.name}" th:name="${user.name}" th:value="${user.name}"/>
 	<br/>
@@ -23,7 +25,7 @@
 </div>
 
 <br/>
-<h3>更优雅的方式展示以上内容  * </h3>
+<h3>对象引用方式(包括时间类型转换)   ----- 更优雅的方式展示以上内容  * </h3>
 <div th:object="${user}"><!-- 传入user对象 -->
 	用户姓名：<input th:id="*{name}" th:name="*{name}" th:value="*{name}"/>
 	<br/>
@@ -44,7 +46,7 @@
 <br/>
 
 <br/>
-<h3>URL:</h3>
+<h3>URL显示方式:</h3>
 <a href="" th:href="@{http://www.imooc.com}">网站地址</a>
 <br/>
 

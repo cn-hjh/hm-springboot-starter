@@ -1,4 +1,4 @@
-package com.hm.controller;
+package com.hm.controller.interceptor;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,18 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hm.pojo.User;
 
-/**
- * Thymeleaf模板引擎
- * @author 004
- *
- */
 @Controller
-@RequestMapping("th")
-public class ThymeleafController {
+@RequestMapping("one")
+public class OneController {
 
 	@RequestMapping("/index")
     public String index(ModelMap map) {
-        map.addAttribute("name", "thymeleaf-hm");
+        map.addAttribute("name", "imooc22");
         return "thymeleaf/index";
     }
 	
@@ -30,19 +25,18 @@ public class ThymeleafController {
     public String center() {
         return "thymeleaf/center/center";
     }
-	
+
 	@RequestMapping("test")
     public String test(ModelMap map) {
 		
-		User u = new User();
-		//u.setName("superadmin");
-		u.setName("manager");
-		u.setAge(18);
-		u.setPassword("123465");
-		u.setBirthday(new Date());
-		u.setDesc("<font color='green'><b>hello 皓码</b></font>");
+		User user = new User();
+		user.setAge(18);
+		user.setName("manager");
+		user.setPassword("123456");
+		user.setBirthday(new Date());
 		
-		map.addAttribute("user", u);
+		map.addAttribute("user", user);
+		
 		
 		User u1 = new User();
 		u1.setAge(19);
@@ -57,7 +51,7 @@ public class ThymeleafController {
 		u2.setBirthday(new Date());
 		
 		List<User> userList = new ArrayList<>();
-		userList.add(u);
+		userList.add(user);
 		userList.add(u1);
 		userList.add(u2);
 		
@@ -67,19 +61,8 @@ public class ThymeleafController {
     }
 	
 	@PostMapping("postform")
-    public String postform(User u) {
-		
-		System.out.println("姓名：" + u.getName());
-		System.out.println("年龄：" + u.getAge());
-		
-        return "redirect:/th/test";
-    }
-	
-	@RequestMapping("showerror")
-    public String showerror(User u) {
-		
-		int a = 1 / 0;
-		
+    public String postform(User user) {
+		System.out.println(user.getName());
         return "redirect:/th/test";
     }
 }
