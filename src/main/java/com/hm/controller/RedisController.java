@@ -16,7 +16,7 @@ import com.hm.utils.JsonUtils;
 import com.hm.utils.RedisOperator;
 
 /**
- * redis缓存
+ * redis缓存(首先需要启动redis)
  * @author 004
  *
  */
@@ -42,6 +42,7 @@ public class RedisController {
 		user.setPassword("abc123");
 		user.setIsDelete(0);
 		user.setRegistTime(new Date());
+		
 		strRedis.opsForValue().set("json:user", JsonUtils.objectToJson(user));
 		
 		SysUser jsonUser = JsonUtils.jsonToPojo(strRedis.opsForValue().get("json:user"), SysUser.class);
@@ -49,6 +50,10 @@ public class RedisController {
 		return IMoocJSONResult.ok(jsonUser);
 	}
 	
+	/**
+	 * 使用RedisOperator工具类
+	 * @return
+	 */
 	@RequestMapping("/getJsonList")
 	public IMoocJSONResult getJsonList() {
 		
@@ -74,12 +79,28 @@ public class RedisController {
 		userList.add(user);
 		userList.add(u1);
 		userList.add(u2);
-		
+		//保存到redis
 		redis.set("json:info:userlist", JsonUtils.objectToJson(userList), 2000);//超时时间2000
-		
+		//从redis取出来 转换为JSON
 		String userListJson = redis.get("json:info:userlist");
 		List<User> userListBorn = JsonUtils.jsonToList(userListJson, User.class);
 		
 		return IMoocJSONResult.ok(userListBorn);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
